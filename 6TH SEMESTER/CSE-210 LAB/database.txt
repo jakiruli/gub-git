@@ -1,0 +1,220 @@
+create database: 
+Create database then name;
+
+table create korar sql:
+
+CREATE TABLE student(
+    id int,
+    name varchar (50),
+    address varchar (50),
+    Email varchar (50),
+    phone int 
+    
+);
+
+INSERT INTO student(id , name , address ,Email , phone)
+VALUES(101,'jakirul','dhaka', 'jakiruleng@gmail.com', 01518448137);
+
+plyer table create kora:
+
+CREATE TABLE players(
+    player_no int PRIMARY KEY,
+    player_name varchar(20),
+    league_no char (20)
+    );
+    
+
+another type:
+
+CREATE TABLE players(
+    player_no int ,
+    player_name varchar(20),
+    league_no char (20),
+    PRIMARY KEY (player_no)
+    
+    );
+
+composit key create kora:
+
+CREATE TABLE diplomas (
+student_name text (20)NOT null,
+    course int NOT null,
+    d_date DATE NOT null,
+    successfull char(12),
+    location varchar(20),
+    PRIMARY KEY (student_name(20) , course , d_date)
+    );
+
+unique key create kora:
+
+CREATE TABLE team (
+    team_No int ,
+    player_no int,
+    leauge_name varchar(20) NOT null,
+    age int,
+    PRIMARY KEY (team_no),
+    UNIQUE KEY (player_no)
+    );
+
+foreign key create kora:
+
+CREATE TABLE Twenty (
+    T_Twenty int,
+    name varchar (20) NOT null,
+    player_no int NOT null,
+    PRIMARY KEY (T_twenty),
+    FOREIGN KEY (player_no) REFERENCES players(player_no)
+    );
+
+auto increment kora:
+
+CREATE TABLE stu (
+    ID int NOT null AUTO_INCREMENT ,
+    First_name varchar (20) NOT null,
+    last_name varchar (20),
+    address varchar (23),
+    PRIMARY KEY (ID)
+    );
+
+INSERT INTO stu (ID ,First_name , last_name, address)
+VALUES(102 , 'jakirul','islam','mirpur');
+
+multiple inser:
+
+INSERT INTO `employee`(`emp_id`, `first_name`, `last_name`, `DOB`, `Gender`, `emp_salary`, `emp_address`, `emp_email`)
+VALUES(12,'jakir' , 'islam',22-12-2001 , 'male',20000, 'mirpur', 'jakireng'),
+
+(14,'jakir' , 'islam',22-12-2001 , 'male',20000, 'mirpur', 'jakireng'),
+
+(15,'jakir' , 'islam',22-12-2001 , 'male',20000, 'mirpur', 'jakireng'),
+
+(16,'jakir' , 'islam',22-12-2001 , 'male',20000, 'mirpur', 'jakireng'),
+
+(17,'jakir' , 'islam',22-12-2001 , 'male',20000, 'mirpur', 'jakireng');
+
+
+
+
+column add kora stu table er moddhe :
+ALTER TABLE stu add COLUMN Email varchar (50);
+ALTER TABLE stu ADD COLUMN department char (10);
+
+table theke ekta column delete kora:
+
+ALTER TABLE stu DROP COLUMN last_name;
+
+
+ekta datar pore onno data add korte  after: 
+
+ALTER TABLE stu ADD COLUMN last_name varchar(20) AFTER First_name;
+
+
+first position e kisu add korte FIRST use kora hoy:
+
+ALTER TABLE stu ADD COLUMN serial int FIRST;
+
+
+change kora:
+
+ALTER TABLE stu CHANGE COLUMN department department varchar (20) NOT null;
+
+select kore information dekha:
+
+SELECT * FROM stu;
+
+backup rakha:
+
+CREATE TABLE IF NOT EXISTS stu_backup SELECT *FROM stu;
+
+
+ data table e update kora :
+
+UPDATE stu SET serial = 1, last_name ='saidur',Email = 'jakir998', department = 'cse' WHERE ID = 102;
+
+AND diye data ber kora :
+
+SELECT * FROM `stu` WHERE First_name = 'jakirul' AND last_name = 'saidur'
+
+
+OR data khuja:
+
+SELECT * FROM `stu` WHERE First_name = 'jakirul' OR last_name = 'saidur'
+
+
+limit koto gula show korbe setar kaj kore :
+
+SELECT * FROM `stu` LIMIT 2
+
+
+ORDER BY DESC korle boro theke shuto man dekhabe:
+
+SELECT * FROM `employee` ORDER BY emp_salary DESC LIMIT 3 ;
+
+IN holo joto man khujbo setai dekhabe same to same joto gula thakbe sob:
+
+SELECT * FROM `employee` WHERE emp_salary IN(20000,30000);
+
+NOT IN korle oi man sara baki gula dekhabe:
+
+SELECT * FROM `employee` WHERE emp_salary  NOT IN(20000,30000);
+
+LIKE er kaj first word diye kaw re khuja 'j%':
+
+SELECT * FROM `employee` WHERE first_name LIKE 'j%';
+
+LIKE er kaj last word diye kaw re khuja '%j':
+
+SELECT * FROM `employee` WHERE first_name LIKE '%j';
+
+
+LIKE er kaj last word diye kaw re khuja '%j%':
+SELECT * FROM `employee` WHERE first_name LIKE '%ja%';
+
+
+product table task 01 :
+
+
+CREATE TABLE product_order_info (
+product_no int NOT null AUTO_INCREMENT,
+ product_name varchar(200),
+ product_type ENUM ('electronic',       'stationary', 'foood', 'beverage') DEFAULT null,
+ product_price float (10.2) NOT null,
+ product_quntity SMALLINT NOT null,
+ order_date datetime NOT null DEFAULT CURRENT_TIMESTAMP ,
+ PRIMARY KEY(product_no)
+    );
+
+insert:
+INSERT INTO product_order_info(product_no ,product_name ,product_type ,product_price ,product_quntity)
+VALUES(101,'laptop','electronics',67000, '1'),
+(null,'mobile','electronics',23500, '1'),
+(null,'watch','electronics',8650, '2'),
+(null,'butter','stationary',50, '5'),
+(null,'coca-cola','bevarage',35, '2'),
+(null,'seven-up','bevarege',55, '1');
+
+avarge product_price kora:
+SELECT AVG (product_price) avg_product_price FROM product_order_info;
+
+select count(*) product:
+SELECT COUNT(*) product_type , product_name , product_price FROM product_order_info 
+WHERE product_type = 'electronic'
+
+product sum kore total price e dekhabe:
+
+SELECT product_no , product_name , product_price ,product_quntity , 
+SUM(product_price* product_quntity) AS total_per_product FROM product_order_info 
+GROUP BY product_no;
+
+
+
+
+
+
+
+
+
+
+
+
+

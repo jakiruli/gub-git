@@ -1,0 +1,47 @@
+CREATE TABLE Depositor (
+    c_name varchar(20) NOT null,
+    account_number int ,
+    PRIMARY KEY (c_name)
+    );
+
+INSERT INTO `depositor`(`c_name`, `account_number`)
+VALUES ('jakiru',14167003),
+('jakirul',14167003),
+('sakib',14167002),
+('nur ',14167001),
+('riyad',14167015);
+
+CREATE TABLE borrower (
+    c_name varchar(20),
+    loan_number int not null,
+    PRIMARY KEY (loan_number),
+    FOREIGN KEY (c_name) REFERENCES depositor(c_name)
+    
+    );
+
+CREATE TABLE loan (
+    loan_number int ,
+    Branch_name varchar(50),
+    ammount int ,
+    PRIMARY KEY (branch_name),
+    FOREIGN KEY (loan_number) REFERENCES borrower(loan_number)
+    
+    );
+
+CREATE TABLE branch (
+branch_id int NOT null,
+    branch_name varchar(200),
+    branch_city varchar(20),
+    PRIMARY KEY (branch_id),
+    FOREIGN KEY(branch_name) REFERENCES loan (branch_name)
+    );
+
+CREATE TABLE account (
+    account_number int not null,
+    branch_name varchar (20),
+    balance int,
+    c_name varchar (20),
+    PRIMARY KEY(account_number),
+    FOREIGN KEY (branch_name) REFERENCES branch (branch_name),
+    FOREIGN KEY (c_name) REFERENCES depositor (c_name)
+    );
